@@ -486,16 +486,10 @@
 				};
 
 	pageItems.forEach(g => {
-    const config = levelConfig[g.judgeLevel] || { class: 'bg-default', text: '未分类' };
-    const judgeClass = config.class;
-    const judgeDisplay = config.text;
-    
-    const priceRangeText = g.minPrice === g.maxPrice 
-        ? `¥${g.minPrice.toFixed(2)}` 
-        : `¥${g.minPrice.toFixed(2)} - ¥${g.maxPrice.toFixed(2)}`;
-    
-    const inviteId = g.inviteId || '';
-									});
+            const judgeClass = g.judgeLevel === 'P0' ? 'bg-p0' : 'bg-p1';
+            const judgeDisplay = g.judgeLevel === 'P0' ? '高价品' : '普通';
+            const priceRangeText = g.minPrice === g.maxPrice ? `¥${g.minPrice.toFixed(2)}` : `¥${g.minPrice.toFixed(2)} - ¥${g.maxPrice.toFixed(2)}`;
+            const inviteId = g.inviteId || '';
 
             let variantsHtml = g.variants.slice(0, 10).map(v => 
                 `<div class="variant-item"><span class="variant-name" title="${v.variant.replace(/"/g, '&quot;')}">${v.variant}</span><span class="variant-price">¥${v.price.toFixed(2)}</span></div>`
