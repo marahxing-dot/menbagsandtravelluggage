@@ -245,11 +245,7 @@
         <select id="l2Filter" onchange="updateL3(); applyFilters()"><option value="">二级类目(全部)</option></select>
         <select id="l3Filter" onchange="applyFilters()"><option value="">三级类目(全部)</option></select>
           <select id="pFilter" onchange="applyFilters()">
-            <option value="">是否高价品(全部)</option>
-            <option value="高价品">💰 高价品</option>
-            <option value="中价品">🔄 普通品</option>
-			<option value="低价品">🔄 低价品</option>
-        </select>
+            <option value="">是否高价品(全部)</option> </select>
         <!-- 发布日期下拉选择框 -->
         <select id="dateFilter" onchange="applyFilters()">
             <option value="">发布日期(全部)</option>
@@ -306,6 +302,18 @@
         '22': '行李标签',
         '23': '长钱包',
         '24': '手机和钥匙钱包'
+        // 如果还有其他数字代码，请继续添加，例如：
+        // '4': 'Sport Socks',
+        // 如果 CSV 中已经是文本，映射不会生效，仍显示原文本
+    };
+    // 
+	
+	 const P_MAP = {
+        // 根据您之前提供的 CSV 样本添加的示例映射，请根据您的实际数据修改
+		'1': '高价品',
+        '2': '中价品',
+        '3': '低价品',
+       
         // 如果还有其他数字代码，请继续添加，例如：
         // '4': 'Sport Socks',
         // 如果 CSV 中已经是文本，映射不会生效，仍显示原文本
