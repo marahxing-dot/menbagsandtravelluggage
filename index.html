@@ -248,7 +248,7 @@
             <option value="">是否高价品(全部)</option>
             <option value="高价品">💰 高价品</option>
             <option value="中价品">🔄 普通品</option>
-			<option value="低价品">低价品</option>
+			<option value="低价品">🔄 低价品</option>
         </select>
         <!-- 发布日期下拉选择框 -->
         <select id="dateFilter" onchange="applyFilters()">
@@ -478,11 +478,24 @@
         const end = start + pageSize;
         const pageItems = groupList.slice(start, end);
 
-        pageItems.forEach(g => {
-            const judgeClass = g.judgeLevel === 'P0' ? 'bg-p0' : 'bg-p1';
-            const judgeDisplay = g.judgeLevel === 'P0' ? '高价品' : '普通';
-            const priceRangeText = g.minPrice === g.maxPrice ? `¥${g.minPrice.toFixed(2)}` : `¥${g.minPrice.toFixed(2)} - ¥${g.maxPrice.toFixed(2)}`;
-            const inviteId = g.inviteId || '';
+       	// 定义映射关系
+	const levelConfig = {
+   		 'high': { class: 'bg-high', text: '高价品' },
+   		 'medium': { class: 'bg-medium', text: '中价品' },
+   		 'low': { class: 'bg-low', text: '低价品' }
+				};
+
+	pageItems.forEach(g => {
+    const config = levelConfig[g.judgeLevel] || { class: 'bg-default', text: '未分类' };
+    const judgeClass = config.class;
+    const judgeDisplay = config.text;
+    
+    const priceRangeText = g.minPrice === g.maxPrice 
+        ? `¥${g.minPrice.toFixed(2)}` 
+        : `¥${g.minPrice.toFixed(2)} - ¥${g.maxPrice.toFixed(2)}`;
+    
+    const inviteId = g.inviteId || '';
+									});
 
             let variantsHtml = g.variants.slice(0, 10).map(v => 
                 `<div class="variant-item"><span class="variant-name" title="${v.variant.replace(/"/g, '&quot;')}">${v.variant}</span><span class="variant-price">¥${v.price.toFixed(2)}</span></div>`
